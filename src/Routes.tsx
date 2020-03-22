@@ -48,7 +48,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
           component={Login}
         />
         <Stack.Screen
-          options={{headerTitle: 'Register'}}
+          options={{headerTitle: 'Sign up'}}
           name="Register"
           component={Register}
         />
