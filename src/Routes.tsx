@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Text, Button} from 'react-native';
+import {Text, Button, ActivityIndicator} from 'react-native';
 import {Center} from './Center';
 import {AuthParamList, AuthNavProps} from './AuthParamList';
 interface RoutesProps {}
@@ -39,6 +39,14 @@ function Register({navigation, route}: AuthNavProps<'Register'>) {
 }
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
+  const [loading, setLoading] = useState(true);
+  if (loading) {
+    return (
+      <Center>
+        <ActivityIndicator size="large" />
+      </Center>
+    );
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
