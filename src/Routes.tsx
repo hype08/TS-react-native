@@ -11,10 +11,16 @@ interface RoutesProps {}
 const Stack = createStackNavigator<AuthParamList>();
 
 function Login({navigation, route}: AuthNavProps<'Login'>) {
+  const {login} = useContext(AuthContext);
   return (
     <Center>
       <Text>{route.name}</Text>
-      <Text>Login Screen</Text>
+      <Button
+        title="log me in"
+        onPress={() => {
+          login();
+        }}
+      />
       <Button
         title="go to register"
         onPress={() => {
@@ -57,14 +63,6 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <Center>
-        <ActivityIndicator size="large" />
-      </Center>
-    );
-  }
-
   return (
     <NavigationContainer>
       {user ? (
@@ -72,7 +70,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
           <Text>User exists</Text>
         </Center>
       ) : (
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Register">
           <Stack.Screen
             options={{headerTitle: 'Sign in'}}
             name="Login"
