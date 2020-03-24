@@ -1,20 +1,27 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {AsyncStorage, Text, Button, ActivityIndicator} from 'react-native';
+import {Text, Button, ActivityIndicator, AsyncStorage} from 'react-native';
 import {Center} from './Center';
 import {AuthParamList, AuthNavProps} from './AuthParamList';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from './AuthProvider';
+import {AppTabs} from './AppTabs';
 interface RoutesProps {}
 
 const Stack = createStackNavigator<AuthParamList>();
 
 function Login({navigation, route}: AuthNavProps<'Login'>) {
+  const {login} = useContext(AuthContext);
   return (
     <Center>
+      <Button
+        title="log me in"
+        onPress={() => {
+          login();
+        }}
+      />
       <Text>{route.name}</Text>
-      <Text>Login Screen</Text>
       <Button
         title="go to register"
         onPress={() => {
@@ -41,21 +48,21 @@ function Register({navigation, route}: AuthNavProps<'Register'>) {
 }
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
-  const {user} = useContext(AuthContext);
+  const {user, login} = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   // check if user is logged in
   useEffect(() => {
     AsyncStorage.getItem('user')
       .then(userString => {
         if (userString) {
-        } else {
-          setLoading(false);
+          // login();
         }
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [login]);
 
   if (loading) {
     return (
@@ -68,9 +75,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
   return (
     <NavigationContainer>
       {user ? (
-        <Center>
-          <Text>User exists</Text>
-        </Center>
+        <AppTabs />
       ) : (
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
