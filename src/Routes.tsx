@@ -6,7 +6,7 @@ import {Center} from './Center';
 import {AuthParamList, AuthNavProps} from './AuthParamList';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from './AuthProvider';
-import {AppTabs} from './appTabs';
+import {AppTabs} from './AppTabs';
 interface RoutesProps {}
 
 const Stack = createStackNavigator<AuthParamList>();

@@ -1,17 +1,20 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AppParamList} from './AppParamList';
 import {Center} from './Center';
-import {Text} from 'react-native';
+import {Text, Button} from 'react-native';
+import {AuthContext} from './AuthProvider';
 
 interface appTabsProps {}
 
 const Tabs = createBottomTabNavigator<AppParamList>();
 
 function Home() {
+  const {logout} = useContext(AuthContext);
   return (
     <Center>
       <Text>home</Text>
+      <Button title="logout" onPress={() => logout()} />
     </Center>
   );
 }
