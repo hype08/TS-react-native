@@ -6,6 +6,7 @@ import {Center} from './Center';
 import {AuthParamList, AuthNavProps} from './AuthParamList';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from './AuthProvider';
+import {AppTabs} from './appTabs';
 interface RoutesProps {}
 
 const Stack = createStackNavigator<AuthParamList>();
@@ -54,7 +55,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
     AsyncStorage.getItem('user')
       .then(userString => {
         if (userString) {
-          login();
+          // login();
         }
         setLoading(false);
       })
@@ -74,9 +75,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
   return (
     <NavigationContainer>
       {user ? (
-        <Center>
-          <Text>User exists</Text>
-        </Center>
+        <AppTabs />
       ) : (
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
