@@ -1,51 +1,12 @@
 import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Text, Button, ActivityIndicator, AsyncStorage} from 'react-native';
+import {ActivityIndicator, AsyncStorage} from 'react-native';
 import {Center} from './Center';
-import {AuthParamList, AuthNavProps} from './AuthParamList';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from './AuthProvider';
 import {AppTabs} from './AppTabs';
+import {AuthStack} from './AuthStack';
 interface RoutesProps {}
-
-const Stack = createStackNavigator<AuthParamList>();
-
-function Login({navigation, route}: AuthNavProps<'Login'>) {
-  const {login} = useContext(AuthContext);
-  return (
-    <Center>
-      <Button
-        title="log me in"
-        onPress={() => {
-          login();
-        }}
-      />
-      <Text>{route.name}</Text>
-      <Button
-        title="go to register"
-        onPress={() => {
-          navigation.navigate('Register');
-        }}
-      />
-    </Center>
-  );
-}
-
-function Register({navigation, route}: AuthNavProps<'Register'>) {
-  return (
-    <Center>
-      <Text>{route.name}</Text>
-      <Text>Register Screen</Text>
-      <Button
-        title="go to register"
-        onPress={() => {
-          navigation.navigate('Login');
-        }}
-      />
-    </Center>
-  );
-}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
   const {user, login} = useContext(AuthContext);
@@ -74,22 +35,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
 
   return (
     <NavigationContainer>
-      {user ? (
-        <AppTabs />
-      ) : (
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen
-            options={{headerTitle: 'Sign in'}}
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            options={{headerTitle: 'Sign up'}}
-            name="Register"
-            component={Register}
-          />
-        </Stack.Navigator>
-      )}
+      {user ? <AppTabs /> : <AuthStack />}
     </NavigationContainer>
   );
 };
