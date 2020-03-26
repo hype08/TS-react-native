@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {AppParamList} from './AppParamList';
-import {Center} from './Center';
+import {AppParamList} from './AppTabs/AppParamList';
+import {Center} from '../shared/Center';
 import {Text, Button} from 'react-native';
-import {AuthContext} from './AuthProvider';
+import {AuthContext} from '../../shared/AuthProvider';
 
 interface appTabsProps {}
 
