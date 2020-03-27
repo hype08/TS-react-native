@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
+import Icon from 'react-native-ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {AppParamList} from './AppParamList';
-import {Center} from './Center';
+import {AppParamList} from './AppTabs/AppParamList';
+import {Center} from '../shared/Center';
 import {Text, Button} from 'react-native';
-import {AuthContext} from './AuthProvider';
+import {AuthContext} from '../../shared/AuthProvider';
 
 interface appTabsProps {}
 
@@ -29,7 +30,11 @@ function Search() {
 
 export const AppTabs: React.FC<appTabsProps> = ({}) => {
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}>
       <Tabs.Screen name="Home" component={Home} />
       <Tabs.Screen name="Search" component={Search} />
     </Tabs.Navigator>
