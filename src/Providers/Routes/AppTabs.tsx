@@ -31,7 +31,6 @@ function Search() {
 export const AppTabs: React.FC<appTabsProps> = ({}) => {
   return (
     <Tabs.Navigator
-      screenOptions={({}) => ({})}
       tabBarOptions={{
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
