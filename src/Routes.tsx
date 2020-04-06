@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {ActivityIndicator, AsyncStorage} from 'react-native';
-import {Center} from './shared/Center';
+import {ActivityIndicator} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Center} from './Center';
 import {useEffect, useState, useContext} from 'react';
-import {AuthContext} from '../shared/AuthProvider';
-import {AppTabs} from './Routes/AppTabs';
-import {AuthStack} from './Routes/AuthStack';
+import {AuthContext} from './AuthProvider';
+import {AppTabs} from './AppTabs';
+import {AuthStack} from './AuthStack';
 interface RoutesProps {}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
