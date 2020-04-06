@@ -2,9 +2,9 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator<AuthParamList>();
-import {AuthParamList, AuthNavProps} from './AuthStack/AuthParamList';
-import {AuthContext} from '../../shared/AuthProvider';
-import {Center} from '../shared/Center';
+import {AuthParamList, AuthNavProps} from './AuthParamList';
+import {AuthContext} from './AuthProvider';
+import {Center} from './Center';
 import {Button, Text} from 'react-native';
 interface AuthStackProps {}
 
