@@ -39,7 +39,6 @@ This is a React Native TypeScript Starter for getting things going quicker.
 ├── tsconfig.json
 ├── yarn-error.log
 └── yarn.lock
-
 ```
 
 ## Contributing
