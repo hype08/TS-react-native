@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Center} from './Center';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, FlatList, TouchableOpacity, Button} from 'react-native';
 import {AuthContext} from './AuthProvider';
+import faker from 'faker';
+
 interface HomeStackProps {}
 
 const Stack = createStackNavigator();
@@ -10,10 +12,18 @@ const Stack = createStackNavigator();
 function Feed() {
   return (
     <Center>
-      <Text>Feed</Text>
+      <FlatList
+        contentContainerStyle={{flex: 1}}
+        renderItem={({item}) => {
+          return <Button title={item} onPress={() => {}} />;
+        }}
+        keyExtractor={(product, idx) => product + idx}
+        data={Array.from(Array(50), () => faker.commerce.product())}
+      />
     </Center>
   );
 }
+
 export const HomeStack: React.FC<HomeStackProps> = ({}) => {
   const {logout} = React.useContext(AuthContext);
   return (
