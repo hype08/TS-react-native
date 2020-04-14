@@ -13,6 +13,7 @@ function Feed() {
   return (
     <Center>
       <FlatList
+        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: 1}}
         renderItem={({item}) => {
           return <Button title={item} onPress={() => {}} />;
