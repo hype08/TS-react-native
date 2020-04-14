@@ -3,10 +3,11 @@ import {AsyncStorage} from 'react-native';
 
 type User = null | {username: string};
 
+// prettier-ignore
 export const AuthContext = React.createContext<{
-  login:() => void;
-  logout: () => void;
   user: User;
+  login:() => void;
+  logout:() => void;
 }>({
   user: null,
   login: () => {},
