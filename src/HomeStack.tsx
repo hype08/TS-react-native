@@ -13,6 +13,7 @@ function Feed() {
   return (
     <Center>
       <FlatList
+        style={{width: '100%'}}
         // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: 1}}
         renderItem={({item}) => {
