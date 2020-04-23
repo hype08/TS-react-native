@@ -3,7 +3,9 @@ import {RouteProp} from '@react-navigation/native';
 
 export type HomeParamList = {
   Feed: undefined;
-  Product: undefined;
+  Product: {
+    name: string;
+  };
 };
 
 export type HomeStackNavProps<T extends keyof HomeParamList> = {

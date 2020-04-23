@@ -23,7 +23,9 @@ function Feed({navigation}: HomeStackNavProps<'Feed'>) {
             <Button
               title={item}
               onPress={() => {
-                navigation.navigate('Product');
+                navigation.navigate('Product', {
+                  name: item,
+                });
               }}
             />
           );
@@ -35,10 +37,10 @@ function Feed({navigation}: HomeStackNavProps<'Feed'>) {
   );
 }
 
-function Product() {
+function Product({route}: HomeStackNavProps<'Product'>) {
   return (
     <Center>
-      <Text>product</Text>
+      <Text>{route.params.name}</Text>
     </Center>
   );
 }
