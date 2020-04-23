@@ -49,7 +49,13 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
   const {logout} = React.useContext(AuthContext);
   return (
     <Stack.Navigator initialRouteName="Feed">
-      <Stack.Screen name="Product" component={Product} />
+      <Stack.Screen
+        options={({route}) => ({
+          headerTitle: `${route.params.name}`,
+        })}
+        name="Product"
+        component={Product}
+      />
       <Stack.Screen
         name="Feed"
         options={{
