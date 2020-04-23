@@ -37,10 +37,26 @@ function Feed({navigation}: HomeStackNavProps<'Feed'>) {
   );
 }
 
-function Product({route}: HomeStackNavProps<'Product'>) {
+function Product({route, navigation}: HomeStackNavProps<'Product'>) {
   return (
     <Center>
       <Text>{route.params.name}</Text>
+      <Button
+        title="Edit this product"
+        onPress={() =>
+          navigation.navigate('EditProduct', {
+            name: route.params.name,
+          })
+        }
+      />
+    </Center>
+  );
+}
+
+function EditProduct({route}: HomeStackNavProps<'EditProduct'>) {
+  return (
+    <Center>
+      <Text>Editing {route.params.name}..</Text>
     </Center>
   );
 }
@@ -49,6 +65,13 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
   const {logout} = React.useContext(AuthContext);
   return (
     <Stack.Navigator initialRouteName="Feed">
+      <Stack.Screen
+        options={({route}) => ({
+          headerTitle: `${route.params.name}`,
+        })}
+        name="EditProduct"
+        component={EditProduct}
+      />
       <Stack.Screen
         options={({route}) => ({
           headerTitle: `${route.params.name}`,
