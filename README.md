@@ -1,3 +1,4 @@
+
 # React Native TypeScript Starter 🚀🚀🚀
 
 This is a React Native TypeScript Starter for getting things going quicker.
