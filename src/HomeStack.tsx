@@ -68,6 +68,11 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
       <Stack.Screen
         options={({route}) => ({
           headerTitle: `${route.params.name}`,
+          headerRight: () => (
+            <TouchableOpacity>
+              <Text>Done</Text>
+            </TouchableOpacity>
+          ),
         })}
         name="EditProduct"
         component={EditProduct}
