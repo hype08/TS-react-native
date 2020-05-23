@@ -8,6 +8,7 @@ export type HomeParamList = {
   };
   EditProduct: {
     name: string;
+    submit?: React.MutableRefObject<() => void>;
   };
 };
 
