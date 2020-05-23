@@ -1,4 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Center} from './Center';
 import {Text, FlatList, TouchableOpacity, Button} from 'react-native';
@@ -14,9 +16,7 @@ function Feed({navigation}: HomeStackNavProps<'Feed'>) {
   return (
     <Center>
       <FlatList
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{width: '100%'}}
-        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: 1}}
         renderItem={({item}) => {
           return (
@@ -53,7 +53,23 @@ function Product({route, navigation}: HomeStackNavProps<'Product'>) {
   );
 }
 
-function EditProduct({route}: HomeStackNavProps<'EditProduct'>) {
+function apiCall(x: any) {
+  return x;
+}
+
+function EditProduct({route, navigation}: HomeStackNavProps<'EditProduct'>) {
+  const [formState] = useState();
+  const submit = useRef(() => {});
+
+  submit.current = () => {
+    apiCall(formState);
+    navigation.goBack();
+  };
+
+  useEffect(() => {
+    navigation.setParams({submit});
+  }, [navigation]);
+
   return (
     <Center>
       <Text>Editing {route.params.name}..</Text>
@@ -68,6 +84,15 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
       <Stack.Screen
         options={({route}) => ({
           headerTitle: `${route.params.name}`,
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => {
+                // submit form
+              }}
+              style={{paddingRight: 8}}>
+              <Text style={{color: 'red'}}>Done</Text>
+            </TouchableOpacity>
+          ),
         })}
         name="EditProduct"
         component={EditProduct}
