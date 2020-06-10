@@ -16,7 +16,7 @@
     "@react-navigation/drawer": "^5.8.2",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.5.1",
-    "@types/faker": "^4.1.11",
+    "@types/faker": "^4.1.12",
     "@types/react-navigation": "^3.4.0",
     "faker": "^4.1.0",
     "react": "16.9.0",
